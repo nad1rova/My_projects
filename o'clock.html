@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>O'clock</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: sans-serif;
+      }
+
+      .hero {
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(
+          rgba(12, 3, 51, 0.3),
+          rgba(12, 3, 51, 0.3)
+        );
+        position: relative;
+        padding: 0 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .back-video {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+      }
+
+      @media (min-aspect-ratio: 16/9) {
+        .back-video {
+          width: 100%;
+          height: auto;
+        }
+      }
+      .clock {
+        display: flex;
+      }
+      .clock div {
+        margin: 5px;
+        position: relative;
+      }
+      .clock span {
+        width: 100px;
+        height: 80px;
+        background-color: #9b0b2b;
+        opacity: 0.8;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 50px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .clock .text {
+        height: 30px;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: #b6769a;
+        opacity: 0.8;
+      }
+      .clock #ampm {
+        bottom: 0;
+        position: absolute;
+        width: 60px;
+        height: 30px;
+        font-size: 20px;
+        background: green;
+      }
+      .content h2 {
+        font-size: 30px;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <video autoplay loop muted plays-inline class="back-video">
+        <source src="video or img/production_id_4321865 (2160p).mp4" />
+      </video>
+      <section class="content">
+        <h2>Digital Clock</h2>
+        <div class="clock">
+          <div>
+            <span id="hour">00</span>
+            <span class="text"> Hours </span>
+          </div>
+          <div>
+            <span id="minutes">00</span>
+            <span class="text"> Minutes </span>
+          </div>
+          <div>
+            <span id="seconds">00</span>
+            <span class="text"> Seconds </span>
+          </div>
+          <div>
+            <span id="ampm">AM</span>
+          </div>
+        </div>
+      </section>
+    </section>
+    <script>
+      const hour = document.getElementById("hour");
+      const minutes = document.getElementById("minutes");
+      const seconds = document.getElementById("seconds");
+      const ampm = document.getElementById("ampm");
+
+      function oclock() {
+        let d = new Date();
+        let h = d.getHours();
+        let m = d.getMinutes();
+        let s = d.getSeconds();
+        
+
+        if (h > 12) {
+            ampm.innerText = "PM"
+        }
+        else{
+            ampm.innerText = "AM"
+
+        }
+
+        h = h < 10 ? "0" + h : h;
+        m = m < 10 ? "0" + m : m;
+        s = s < 10 ? "0" + s : s;
+
+        hour.textContent = h;
+        minutes.textContent = m;
+        seconds.textContent = s;
+      }
+      setInterval(oclock, 1000);
+      oclock();
+    </script>
+  </body>
+</html>
